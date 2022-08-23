@@ -2,8 +2,9 @@ import { Formik, Form, Field } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import Alert from "./Alert";
+import Loading from "./Loading";
 
-const Formulary = () => {
+const Formulary = ({ client, loading }) => {
   const navigate = useNavigate();
 
   const newClientSchema = Yup.object().shape({
@@ -21,35 +22,49 @@ const Formulary = () => {
   });
   const handleSubmit = async (values) => {
     try {
-      const url = "http://localhost:5000/clients";
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-      const result = await response.json();
+      let response;
+      if (client.id) {
+        const url = `http://localhost:5000/clients/${client.id}`;
+        response = await fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        });
+      } else {
+        const url = "http://localhost:5000/clients";
+        response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        });
+      }
       navigate("/clients");
     } catch (error) {
       console.log(error);
     }
   };
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto">
       <h1 className="text-gray-600 font-bold text-xl uppercase text-center">
-        Add Client
+        {client?.name ? "Edit Client" : "Add Client"}
       </h1>
 
       <Formik
         initialValues={{
-          name: "",
-          company: "",
-          email: "",
-          cellphone: "",
-          notes: "",
+          name: client?.name ?? "",
+          company: client?.company ?? "",
+          email: client?.email ?? "",
+          cellphone: client?.cellphone ?? "",
+          notes: client?.notes ?? "",
         }}
+        enableReinitialize={true}
         onSubmit={async (values, { resetForm }) => {
           await handleSubmit(values);
 
@@ -136,7 +151,7 @@ const Formulary = () => {
               </div>
               <input
                 type="submit"
-                value="Add client"
+                value={client?.name ? "Edit Client" : "Add Client"}
                 className="mt-5 w-full bg-blue-800 p-3 text-white uppercase font-bold text-lg"
               />
             </Form>
@@ -145,6 +160,11 @@ const Formulary = () => {
       </Formik>
     </div>
   );
+};
+
+Formulary.defaultProps = {
+  client: {},
+  loading: false,
 };
 
 export default Formulary;
