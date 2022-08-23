@@ -1,8 +1,7 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 const Client = ({ client, handleDelete }) => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { name, company, email, cellphone, notes, id } = client;
 

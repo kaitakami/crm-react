@@ -26,7 +26,11 @@ const EditClient = () => {
     <>
       <h1 className="font-black text-4xl text-blue-900">Edit client</h1>
       <p>Use this form to edit a client's data</p>
-      {client?.name ? <Formulary client={client} loading={loading} /> : "Client ID not valid"}
+      {client?.name ? (
+        <Formulary client={client} loading={loading} />
+      ) : (
+        "Client ID not valid"
+      )}
     </>
   );
 };

@@ -15,7 +15,6 @@ function App() {
           <Route path="new" element={<NewClient />} />
           <Route path="edit/:id" element={<EditClient />} />
           <Route path=":id" element={<ViewClient />} />
-
         </Route>
       </Routes>
     </BrowserRouter>
