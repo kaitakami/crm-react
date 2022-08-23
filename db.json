@@ -1,3 +1,20 @@
 {
-  "clients": []
+  "clients": [
+    {
+      "name": "Numbi",
+      "company": "Numbax",
+      "email": "numbax@email.com",
+      "cellphone": "12345678",
+      "notes": "Null... ?",
+      "id": 1
+    },
+    {
+      "name": "Prueba",
+      "company": "Compaprueba",
+      "email": "prueba@correo.com",
+      "cellphone": "345678",
+      "notes": "Prueba",
+      "id": 2
+    }
+  ]
 }

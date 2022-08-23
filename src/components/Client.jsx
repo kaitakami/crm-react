@@ -17,7 +17,7 @@ const Client = ({ client, handleDelete }) => {
         <button
           type="button"
           className="bg-yellow-500 hover:bg-yellow-600 block w-full text-white p-2 uppercase font-bold text-xs transition-all rounded-sm"
-          onClick={() => navigate(`/clients/${id}`)}
+          onClick={() => navigate(`/${id}`)}
         >
           Notes
         </button>

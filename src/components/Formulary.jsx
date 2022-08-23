@@ -24,7 +24,7 @@ const Formulary = ({ client, loading }) => {
     try {
       let response;
       if (client.id) {
-        const url = `${import.meta.env.VITE_API_URL }/${client.id}`;
+        const url = `${import.meta.env.VITE_API_URL}/${client.id}`;
         response = await fetch(url, {
           method: "PUT",
           headers: {
@@ -42,7 +42,7 @@ const Formulary = ({ client, loading }) => {
           body: JSON.stringify(values),
         });
       }
-      navigate("/clients");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }

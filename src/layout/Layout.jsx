@@ -15,7 +15,7 @@ const Layout = () => {
             className={`${
               actualUrl === "/clients" ? "text-blue-300" : "text-white"
             } text-2xl block mt-2 hover:text-blue-300`}
-            to="/clients"
+            to="/"
           >
             Clients
           </Link>
@@ -23,7 +23,7 @@ const Layout = () => {
             className={`${
               actualUrl === "/clients/new" ? "text-blue-300" : "text-white"
             } text-2xl block mt-2 hover:text-blue-300`}
-            to="/clients/new"
+            to="/new"
           >
             New Client
           </Link>
